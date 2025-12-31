@@ -8,7 +8,7 @@ height = st.slider('Enter your Height (in cms)',100,250,175)
 
 weight = st.slider('Enter your weight (in kgs)',40,200,70)
 
-bmi = weight / ((height/100 ** 2))
+bmi = weight / ((height ** 2))
 
 st.write(f'### Height = {height}')
 
