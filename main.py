@@ -1,28 +1,28 @@
-import streamlit as st 
-import pandas as pd
+import streamlit as st
 
-st.title('BMI Calculator')
+st.title("BMI Calculator")
 st.write('## "BMI" stands for Body Mass Index')
 
-height = st.slider('Enter your Height (in cms)',100,250,175)
+height = st.slider("Enter your Height (in cms)", 100, 250, 175)
+weight = st.slider("Enter your weight (in kgs)", 40, 200, 70)
 
-weight = st.slider('Enter your weight (in kgs)',40,200,70)
+# Convert height to meters
+height_m = height / 100
 
-bmi = weight / ((height ** 2))
+# Correct BMI formula
+bmi = weight / (height_m ** 2)
 
-st.write(f'### Height = {height}')
+st.write(f"### Height = {height} cm")
+st.write(f"### Weight = {weight} kg")
+st.write(f"### BMI = {bmi:.2f}")
 
-st.write(f'### Weight = {weight} ')
+st.write("## BMI Category")
 
-st.write(f'### BMI = {bmi:.2f}')
-
-st.write('## BMI Categories')
-
-st.write('### - Underweight : BMI less than 18.5')
-
-st.write('### - Normal : BMI between 18.5 and 24.9')
-
-st.write('### - Overweight : BMI between 25 and 29.9')
-
-st.write('### - Obesity : BMI 30 or greater')
-
+if bmi < 18.5:
+    st.info("Underweight")
+elif bmi < 25:
+    st.success("Normal")
+elif bmi < 30:
+    st.warning("Overweight")
+else:
+    st.error("Obesity")
